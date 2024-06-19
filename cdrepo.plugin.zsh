@@ -54,7 +54,6 @@ cdrepo() {
     # Ensure the parent directory of local_path exists
     local parent_dir=$(dirname "$local_path")
     if [ ! -d "$parent_dir" ]; then
-        echo "Creating parent directory: $parent_dir"
         mkdir -p "$parent_dir"
         if [ $? -ne 0 ]; then
             echo "Error: Failed to create parent directory: $parent_dir"
@@ -62,13 +61,11 @@ cdrepo() {
         fi
     fi
 
-    # Check if the local path exists and is not empty
-    if [ ! -d "$local_path" ] || [ -z "$(ls -A "$local_path")" ]; then
-        # If the path doesn't exist or is empty, clone the repository
-        echo "Cloning repository into: $local_path"
+    # Check if the local path exists
+    if [ ! -d "$local_path" ]; then
+        # If the path doesn't exist, clone the repository
         git clone "$repo_url" "$local_path"
         if [ $? -ne 0 ]; then
-            echo "Error: Failed to clone repository into: $local_path"
             return 1
         fi
     fi
