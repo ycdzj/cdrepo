@@ -83,7 +83,7 @@ The `cdrepo` plugin supports two formats for Git repository URLs:
 
    - Examples:
      - `https://github.com/user/repo.git`
-     - `ssh://git@github.com:user/repo.git`
+     - `ssh://git@github.com/user/repo.git`
 
 2. **SCP-like URL:**
 
